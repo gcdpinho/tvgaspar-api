@@ -1,0 +1,29 @@
+{
+  "name": "tvgaspar-api",
+  "version": "1.0.0",
+  "description": "API node para tvgaspar.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gcdpinho/tvgaspar-api.git"
+  },
+  "author": "Gustavo Pinho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gcdpinho/tvgaspar-api/issues"
+  },
+  "homepage": "https://github.com/gcdpinho/tvgaspar-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bookshelf": "^0.13.3",
+    "express": "^4.16.2",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.1.1",
+    "knex": "^0.14.6",
+    "mysql": "^2.15.0"
+  }
+}
