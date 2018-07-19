@@ -23,8 +23,8 @@ CREATE TABLE image_tag (
     image_id INT NOT NULL,
     tag_id INT NOT NULL,
     PRIMARY KEY (image_id, tag_id),
-    FOREIGN KEY (image_id) REFERENCES image (id),
-    FOREIGN KEY (tag_id) REFERENCES tag (id)
+    FOREIGN KEY (image_id) REFERENCES image (id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tag (id) ON DELETE CASCADE
 );
 
 CREATE TABLE user (
@@ -51,8 +51,8 @@ CREATE TABLE tag_video (
     video_id int NOT NULL,
     tag_id int NOT NULL,
     PRIMARY KEY (video_id, tag_id),
-    FOREIGN KEY (video_id) REFERENCES video (id),
-    FOREIGN KEY (tag_id) REFERENCES tag (id)
+    FOREIGN KEY (video_id) REFERENCES video (id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tag (id) ON DELETE CASCADE
 );
 
 CREATE TABLE ad (
@@ -87,30 +87,30 @@ CREATE TABLE news_tag (
     news_id int NOT NULL,
     tag_id int NOT NULL,
     PRIMARY KEY (news_id, tag_id),
-    FOREIGN KEY (news_id) REFERENCES news (id),
-    FOREIGN KEY (tag_id) REFERENCES tag (id)
+    FOREIGN KEY (news_id) REFERENCES news (id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tag (id) ON DELETE CASCADE
 );
 
 CREATE TABLE image_news (
     news_id int NOT NULL,
     image_id int NOT NULL,
     PRIMARY KEY (news_id, image_id),
-    FOREIGN KEY (news_id) REFERENCES news (id),
-    FOREIGN KEY (image_id) REFERENCES image (id)
+    FOREIGN KEY (news_id) REFERENCES news (id) ON DELETE CASCADE,
+    FOREIGN KEY (image_id) REFERENCES image (id) ON DELETE CASCADE
 );
 
 CREATE TABLE category_news (
     news_id int NOT NULL,
     category_id int NOT NULL,
     PRIMARY KEY (news_id, category_id),
-    FOREIGN KEY (news_id) REFERENCES news (id),
-    FOREIGN KEY (category_id) REFERENCES category (id)
+    FOREIGN KEY (news_id) REFERENCES news (id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE
 );
 
 CREATE TABLE news_video (
     news_id int NOT NULL,
     video_id int NOT NULL,
     PRIMARY KEY (news_id, video_id),
-    FOREIGN KEY (news_id) REFERENCES news (id),
-    FOREIGN KEY (video_id) REFERENCES video (id)
+    FOREIGN KEY (news_id) REFERENCES news (id) ON DELETE CASCADE,
+    FOREIGN KEY (video_id) REFERENCES video (id) ON DELETE CASCADE
 );
