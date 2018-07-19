@@ -8,6 +8,7 @@ const Category = require('./category');
 
 const News = bookshelf.Model.extend({
     tableName: 'news',
+    hasTimestamps: true,
     tags: function () {
         return this.belongsToMany(Tag);
     },
