@@ -1,33 +1,33 @@
 'use strict';
 
 var router = require('express').Router();
-var Tag = require('./../models/tag');
+var User = require('./../models/user');
 
 router.get('/', (req, res) => {
     try {
-        Tag.fetchAll()
-            .then(tags => {
-                res.json(tags);
+        User.fetchAll()
+            .then(users => {
+                res.json(users);
             })
             .catch(err => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao listar as tags.'
+                    message: 'Erro ao listar os users.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao listar as tags.'
+            message: 'Erro ao listar os users.'
         });
     }
 });
 
 router.post('/', (req, res) => {
     try {
-        new Tag(req.body).save()
+        new User(req.body).save()
             .then(saved => {
                 res.json(saved);
             })
@@ -35,21 +35,21 @@ router.post('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao inserir tag.'
+                    message: 'Erro ao inserir user.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao inserir tag.'
+            message: 'Erro ao inserir user.'
         });
     }
 });
 
 router.put('/:id', (req, res) => {
     try {
-        Tag.where('id', req.params.id).save(req.body, {
+        User.where('id', req.params.id).save(req.body, {
                 method: 'update',
                 patch: true
             })
@@ -61,21 +61,21 @@ router.put('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao atualizar tag.'
+                    message: 'Erro ao atualizar user.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao atualizar tag.'
+            message: 'Erro ao atualizar user.'
         });
     }
 });
 
 router.delete('/:id', (req, res) => {
     try {
-        Tag.where('id', req.params.id).destroy()
+        User.where('id', req.params.id).destroy()
             .then(destroyed => {
                 res.json(destroyed);
             })
@@ -83,17 +83,17 @@ router.delete('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao excluir tag.'
+                    message: 'Erro ao excluir user.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao excluir tag.'
+            message: 'Erro ao excluir user.'
         });
     }
 });
 
 
-module.exports = app => app.use('/tag', router);
+module.exports = app => app.use('/user', router);
