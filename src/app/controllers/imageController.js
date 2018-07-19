@@ -16,14 +16,14 @@ router.get('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao listar as images.'
+                    message: 'Error listing images.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao listar as images.'
+            message: 'Error listing images.'
         });
     }
 });
@@ -38,14 +38,14 @@ router.post('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao inserir image.'
+                    message: 'Error inserting image.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao inserir image.'
+            message: 'Error inserting image.'
         });
     }
 });
@@ -63,14 +63,14 @@ router.put('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao atualizar image.'
+                    message: 'Error updating image.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao atualizar image.'
+            message: 'Error updating image.'
         });
     }
 });
@@ -85,14 +85,14 @@ router.delete('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao excluir image.'
+                    message: 'Error deleting image.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao excluir image.'
+            message: 'Error deleting image.'
         });
     }
 });
@@ -113,7 +113,7 @@ router.post('/:id', (req, res) => {
                         res.status(400).send({
                             err: err,
                             position: 0,
-                            message: 'Erro ao inserir image com Tag.'
+                            message: 'Error inserting image with Tag.'
                         });
                     });
             })
@@ -121,14 +121,14 @@ router.post('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 1,
-                    message: 'Erro ao inserir image com Tag.'
+                    message: 'Error inserting image with Tag.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 2,
-            message: 'Erro ao inserir image com Tag.'
+            message: 'Error inserting image with Tag.'
         });
     }
 });

@@ -13,14 +13,14 @@ router.get('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao listar os users.'
+                    message: 'Error listing users.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao listar os users.'
+            message: 'Error listing users.'
         });
     }
 });
@@ -35,14 +35,14 @@ router.post('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao inserir user.'
+                    message: 'Error inserting user.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao inserir user.'
+            message: 'Error inserting user.'
         });
     }
 });
@@ -61,14 +61,14 @@ router.put('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao atualizar user.'
+                    message: 'Error updating user.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao atualizar user.'
+            message: 'Error updating user.'
         });
     }
 });
@@ -83,14 +83,14 @@ router.delete('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao excluir user.'
+                    message: 'Error deleting user.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao excluir user.'
+            message: 'Error deleting user.'
         });
     }
 });

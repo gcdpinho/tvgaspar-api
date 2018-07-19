@@ -16,14 +16,14 @@ router.get('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao listar os videos.'
+                    message: 'Error listing videos.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao listar os videos.'
+            message: 'Error listing videos.'
         });
     }
 });
@@ -38,14 +38,14 @@ router.post('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao inserir video.'
+                    message: 'Error inserting video.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao inserir video.'
+            message: 'Error inserting video.'
         });
     }
 });
@@ -63,14 +63,14 @@ router.put('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao atualizar video.'
+                    message: 'Error updating video.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao atualizar video.'
+            message: 'Error updating video.'
         });
     }
 });
@@ -85,14 +85,14 @@ router.delete('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao excluir video.'
+                    message: 'Error deleting video.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao excluir video.'
+            message: 'Error deleting video.'
         });
     }
 });
@@ -113,7 +113,7 @@ router.post('/:id', (req, res) => {
                         res.status(400).send({
                             err: err,
                             position: 0,
-                            message: 'Erro ao inserir video com Tag.'
+                            message: 'Error inserting video with Tag.'
                         });
                     });
             })
@@ -121,14 +121,14 @@ router.post('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 1,
-                    message: 'Erro ao inserir video com Tag.'
+                    message: 'Error inserting video with Tag.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 2,
-            message: 'Erro ao inserir video com Tag.'
+            message: 'Error inserting video with Tag.'
         });
     }
 });

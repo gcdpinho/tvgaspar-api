@@ -13,14 +13,14 @@ router.get('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao listar as tags.'
+                    message: 'Error listing tags.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao listar as tags.'
+            message: 'Error listing tags.'
         });
     }
 });
@@ -35,14 +35,14 @@ router.post('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao inserir tag.'
+                    message: 'Error inserting tag.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao inserir tag.'
+            message: 'Error inserting tag.'
         });
     }
 });
@@ -61,14 +61,14 @@ router.put('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao atualizar tag.'
+                    message: 'Error updating tag.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao atualizar tag.'
+            message: 'Error updating tag.'
         });
     }
 });
@@ -83,14 +83,14 @@ router.delete('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao excluir tag.'
+                    message: 'Error deleting tag.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao excluir tag.'
+            message: 'Error deleting tag.'
         });
     }
 });

@@ -16,14 +16,14 @@ router.get('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao listar as ads.'
+                    message: 'Error listing ads.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao listar as ads.'
+            message: 'Error listing ads.'
         });
     }
 });
@@ -38,14 +38,14 @@ router.post('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao inserir ad.'
+                    message: 'Error inserting ad.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao inserir ad.'
+            message: 'Error inserting ad.'
         });
     }
 });
@@ -63,14 +63,14 @@ router.put('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao atualizar ad.'
+                    message: 'Error updating ad.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao atualizar ad.'
+            message: 'Error updating ad.'
         });
     }
 });
@@ -85,49 +85,16 @@ router.delete('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao excluir ad.'
+                    message: 'Error deleting ad.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao excluir ad.'
+            message: 'Error deleting ad.'
         });
     }
 });
-
-// router.post('/:id', (req, res) => {
-//     try {
-//         const ad = new Ad(req.body);
-//         ad.save({
-//                 image_id: req.params.id
-//             })
-//             .then(saved => {
-//                 res.json(saved)
-//                     .catch(err => {
-//                         res.status(400).send({
-//                             err: err,
-//                             position: 0,
-//                             message: 'Erro ao inserir ad com image.'
-//                         });
-//                     });
-//             })
-//             .catch(err => {
-//                 res.status(400).send({
-//                     err: err,
-//                     position: 1,
-//                     message: 'Erro ao inserir ad com image.'
-//                 });
-//             });
-//     } catch (err) {
-//         res.status(400).send({
-//             err: err,
-//             position: 2,
-//             message: 'Erro ao inserir ad com image.'
-//         });
-//     }
-// });
-
 
 module.exports = app => app.use('/ad', router);

@@ -16,14 +16,14 @@ router.get('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao listar as news.'
+                    message: 'Error listing news.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao listar as news.'
+            message: 'Error listing news.'
         });
     }
 });
@@ -38,14 +38,14 @@ router.post('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao inserir news.'
+                    message: 'Error inserting news.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao inserir news.'
+            message: 'Error inserting news.'
         });
     }
 });
@@ -63,14 +63,14 @@ router.put('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao atualizar news.'
+                    message: 'Error updating news.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao atualizar news.'
+            message: 'Error updating news.'
         });
     }
 });
@@ -85,14 +85,14 @@ router.delete('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao excluir news.'
+                    message: 'Error deleting news.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao excluir news.'
+            message: 'Error deleting news.'
         });
     }
 });
@@ -116,21 +116,21 @@ router.post('/:idCategory/:idImage/:idTag/:idVideo', (req, res) => {
                     res.status(400).send({
                         err: err,
                         position: 0,
-                        message: 'Erro ao inserir news relação.'
+                        message: 'Error inserting news with relação.'
                     });
                 });
             }).catch(err => {
                 res.status(400).send({
                     err: err,
                     position: 1,
-                    message: 'Erro ao inserir news com relação.'
+                    message: 'Error inserting news with relação.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 2,
-            message: 'Erro ao inserir news com relação.'
+            message: 'Error inserting news with relação.'
         });
     }
 });

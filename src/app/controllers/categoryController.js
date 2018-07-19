@@ -13,14 +13,14 @@ router.get('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao listar as categories.'
+                    message: 'Error listing categories.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao listar as categories.'
+            message: 'Error listing categories.'
         });
     }
 });
@@ -35,14 +35,14 @@ router.post('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao inserir category.'
+                    message: 'Error inserting category.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao inserir category.'
+            message: 'Error inserting category.'
         });
     }
 });
@@ -61,14 +61,14 @@ router.put('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao atualizar category.'
+                    message: 'Error updating category.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao atualizar category.'
+            message: 'Error updating category.'
         });
     }
 });
@@ -83,14 +83,14 @@ router.delete('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao excluir category.'
+                    message: 'Error deleting category.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao excluir category.'
+            message: 'Error deleting category.'
         });
     }
 });
