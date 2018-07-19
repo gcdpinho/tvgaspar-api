@@ -2,8 +2,8 @@
 
 var bookshelf = require('bookshelf')(require('knex')(require('./../config/db.json')));
 
-var categoria = bookshelf.Model.extend({
+var Categoria = bookshelf.Model.extend({
     tableName: 'categoria'
 });
 
-module.exports = categoria;
+module.exports = Categoria;

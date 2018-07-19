@@ -1,33 +1,33 @@
 'use strict';
 
 var router = require('express').Router();
-var Categoria = require('./../models/categoria');
+var Tag = require('./../models/tag');
 
 router.get('/', (req, res) => {
     try {
-        Categoria.fetchAll()
-            .then(categorias => {
-                res.json(categorias);
+        Tag.fetchAll()
+            .then(tags => {
+                res.json(tags);
             })
             .catch(err => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao listar as categorias.'
+                    message: 'Erro ao listar as tags.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao listar as categorias.'
+            message: 'Erro ao listar as tags.'
         });
     }
 });
 
 router.post('/', (req, res) => {
     try {
-        new Categoria(req.body).save()
+        new Tag(req.body).save()
             .then(saved => {
                 res.json(saved);
             })
@@ -35,21 +35,21 @@ router.post('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao inserir categoria.'
+                    message: 'Erro ao inserir tag.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao inserir categoria.'
+            message: 'Erro ao inserir tag.'
         });
     }
 });
 
-router.put('/:idCategoria', (req, res) => {
+router.put('/:idTag', (req, res) => {
     try {
-        Categoria.where('idCategoria', req.params.idCategoria).save(req.body, {
+        Tag.where('idTag', req.params.idTag).save(req.body, {
                 method: 'update',
                 patch: true
             })
@@ -61,21 +61,21 @@ router.put('/:idCategoria', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao atualizar categoria.'
+                    message: 'Erro ao atualizar tag.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao atualizar categoria.'
+            message: 'Erro ao atualizar tag.'
         });
     }
 });
 
-router.delete('/:idCategoria', (req, res) => {
+router.delete('/:idTag', (req, res) => {
     try {
-        Categoria.where('idCategoria', req.params.idCategoria).destroy()
+        Tag.where('idTag', req.params.idTag).destroy()
             .then(destroyed => {
                 res.json(destroyed);
             })
@@ -83,17 +83,17 @@ router.delete('/:idCategoria', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Erro ao excluir categoria.'
+                    message: 'Erro ao excluir tag.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Erro ao excluir categoria.'
+            message: 'Erro ao excluir tag.'
         });
     }
 });
 
 
-module.exports = app => app.use('/categoria', router);
+module.exports = app => app.use('/tag', router);

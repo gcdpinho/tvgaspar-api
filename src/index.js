@@ -1,6 +1,5 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
-require('./app/controllers/index')(app);
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,7 +14,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+require('./app/controllers/index')(app);
+
 const port = process.env.PORT || 3000;
 app.listen(port);
 
-console.log("App run on port " + port);
+console.log(`App run on port ${port}`);

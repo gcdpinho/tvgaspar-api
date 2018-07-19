@@ -1,1 +1,1 @@
-# tvgaspar-api
+API node para TV-Gaspar, usando knex + bookself.
