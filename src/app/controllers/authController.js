@@ -1,7 +1,16 @@
 'use strict';
 
-var router = require('express').Router();
-var User = require('./../models/user');
+const router = require('express').Router();
+const User = require('./../models/user');
+const jwt = require('jsonwebtoken');
+const authConfig = require('./../config/auth.json');
+
+const getToken = () => {
+    return jwt.sign({}, authConfig.secret, {
+        expiresIn: "1d"
+    });
+};
+
 
 router.post('/', (req, res) => {
     try {
@@ -11,12 +20,24 @@ router.post('/', (req, res) => {
             .then(user => {
                 user.authenticate(req.body.password)
                     .then(user => {
-                        res.json(user);
+                        user.save({
+                                token: getToken()
+                            })
+                            .then((saved) => {
+                                res.json(saved);
+                            })
+                            .catch(err => {
+                                res.status(400).send({
+                                    err: err,
+                                    position: 0,
+                                    message: 'Error authenticate user.'
+                                });
+                            });
                     })
                     .catch(err => {
                         res.status(400).send({
                             err: err,
-                            position: 0,
+                            position: 1,
                             message: 'Error authenticate user.'
                         });
                     })
@@ -24,17 +45,19 @@ router.post('/', (req, res) => {
             .catch(err => {
                 res.status(400).send({
                     err: err,
-                    position: 1,
+                    position: 2,
                     message: 'Error authenticate user.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
-            position: 2,
+            position: 3,
             message: 'Error authenticate user.'
         });
     }
 });
+
+
 
 module.exports = app => app.use('/auth', router);

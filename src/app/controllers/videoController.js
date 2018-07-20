@@ -1,7 +1,7 @@
 'use strict';
 
-var router = require('express').Router();
-var Video = require('./../models/video');
+const router = require('express').Router();
+const Video = require('./../models/video');
 
 router.get('/', (req, res) => {
     try {

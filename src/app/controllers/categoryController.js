@@ -1,7 +1,7 @@
 'use strict';
 
-var router = require('express').Router();
-var Category = require('./../models/category');
+const router = require('express').Router();
+const Category = require('./../models/category');
 
 router.get('/', (req, res) => {
     try {

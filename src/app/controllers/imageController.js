@@ -1,7 +1,7 @@
 'use strict';
 
-var router = require('express').Router();
-var Image = require('./../models/image');
+const router = require('express').Router();
+const Image = require('./../models/image');
 
 router.get('/', (req, res) => {
     try {

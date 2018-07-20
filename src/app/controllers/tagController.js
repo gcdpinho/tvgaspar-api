@@ -1,7 +1,7 @@
 'use strict';
 
-var router = require('express').Router();
-var Tag = require('./../models/tag');
+const router = require('express').Router();
+const Tag = require('./../models/tag');
 
 router.get('/', (req, res) => {
     try {
