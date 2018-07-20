@@ -1,36 +1,36 @@
 'use strict';
 
 const router = require('express').Router();
-const News = require('./../models/news');
+const Image = require('./../../models/image');
 
 router.get('/', (req, res) => {
     try {
-        News.fetchAll({
-                withRelated: ['tags', 'images', 'categories', 'videos']
+        Image.fetchAll({
+                withRelated: ['tags']
             })
-            .then(news => {
-                res.json(news);
+            .then(images => {
+                res.json(images);
             })
             .catch(err => {
                 console.log(err);
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Error listing news.'
+                    message: 'Error listing images.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Error listing news.'
+            message: 'Error listing images.'
         });
     }
 });
 
 router.post('/', (req, res) => {
     try {
-        new News(req.body).save()
+        new Image(req.body).save()
             .then(saved => {
                 res.json(saved);
             })
@@ -38,21 +38,21 @@ router.post('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Error inserting news.'
+                    message: 'Error inserting image.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Error inserting news.'
+            message: 'Error inserting image.'
         });
     }
 });
 
 router.put('/:id', (req, res) => {
     try {
-        News.where('id', req.params.id).save(req.body, {
+        Image.where('id', req.params.id).save(req.body, {
                 method: 'update',
                 patch: true
             })
@@ -63,21 +63,21 @@ router.put('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Error updating news.'
+                    message: 'Error updating image.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Error updating news.'
+            message: 'Error updating image.'
         });
     }
 });
 
 router.delete('/:id', (req, res) => {
     try {
-        News.where('id', req.params.id).destroy()
+        Image.where('id', req.params.id).destroy()
             .then(destroyed => {
                 res.json(destroyed);
             })
@@ -85,55 +85,53 @@ router.delete('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Error deleting news.'
+                    message: 'Error deleting image.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Error deleting news.'
+            message: 'Error deleting image.'
         });
     }
 });
 
-router.post('/:idCategory/:idImage/:idTag/:idVideo', (req, res) => {
+router.post('/:id', (req, res) => {
     try {
-        const news = new News(req.body);
-        news.save()
+        const image = new Image(req.body);
+        image.save()
             .then(saved => {
-                Promise.all([news.categories().attach(JSON.parse(req.params.idCategory)),
-                    news.images().attach(JSON.parse(req.params.idImage)),
-                    news.videos().attach(JSON.parse(req.params.idVideo)),
-                    news.tags().attach(JSON.parse(req.params.idTag))
-
-                ]).then(relation => {
-                    res.json({
-                        saved,
-                        relation
+                image.tags().attach(JSON.parse(req.params.id))
+                    .then(relation => {
+                        res.json({
+                            saved,
+                            relation
+                        });
+                    })
+                    .catch(err => {
+                        res.status(400).send({
+                            err: err,
+                            position: 0,
+                            message: 'Error inserting image with Tag.'
+                        });
                     });
-                }).catch(err => {
-                    res.status(400).send({
-                        err: err,
-                        position: 0,
-                        message: 'Error inserting news with relação.'
-                    });
-                });
-            }).catch(err => {
+            })
+            .catch(err => {
                 res.status(400).send({
                     err: err,
                     position: 1,
-                    message: 'Error inserting news with relação.'
+                    message: 'Error inserting image with Tag.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 2,
-            message: 'Error inserting news with relação.'
+            message: 'Error inserting image with Tag.'
         });
     }
 });
 
 
-module.exports = app => app.use('/news', router);
+module.exports = app => app.use('/image', router);

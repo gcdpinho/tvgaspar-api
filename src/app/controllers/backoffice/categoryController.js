@@ -1,36 +1,33 @@
 'use strict';
 
 const router = require('express').Router();
-const Ad = require('./../models/ad');
+const Category = require('./../../models/category');
 
 router.get('/', (req, res) => {
     try {
-        Ad.fetchAll({
-                withRelated: ['image']
-            })
-            .then(ads => {
-                res.json(ads);
+        Category.fetchAll()
+            .then(categories => {
+                res.json(categories);
             })
             .catch(err => {
-                console.log(err);
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Error listing ads.'
+                    message: 'Error listing categories.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Error listing ads.'
+            message: 'Error listing categories.'
         });
     }
 });
 
 router.post('/', (req, res) => {
     try {
-        new Ad(req.body).save()
+        new Category(req.body).save()
             .then(saved => {
                 res.json(saved);
             })
@@ -38,21 +35,21 @@ router.post('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Error inserting ad.'
+                    message: 'Error inserting category.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Error inserting ad.'
+            message: 'Error inserting category.'
         });
     }
 });
 
 router.put('/:id', (req, res) => {
     try {
-        Ad.where('id', req.params.id).save(req.body, {
+        Category.where('id', req.params.id).save(req.body, {
                 method: 'update',
                 patch: true
             })
@@ -60,24 +57,25 @@ router.put('/:id', (req, res) => {
                 res.json(saved);
             })
             .catch(err => {
+                console.log(err);
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Error updating ad.'
+                    message: 'Error updating category.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Error updating ad.'
+            message: 'Error updating category.'
         });
     }
 });
 
 router.delete('/:id', (req, res) => {
     try {
-        Ad.where('id', req.params.id).destroy()
+        Category.where('id', req.params.id).destroy()
             .then(destroyed => {
                 res.json(destroyed);
             })
@@ -85,16 +83,17 @@ router.delete('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Error deleting ad.'
+                    message: 'Error deleting category.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Error deleting ad.'
+            message: 'Error deleting category.'
         });
     }
 });
 
-module.exports = app => app.use('/ad', router);
+
+module.exports = app => app.use('/category', router);

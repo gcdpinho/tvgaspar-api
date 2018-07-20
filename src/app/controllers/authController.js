@@ -11,7 +11,6 @@ const getToken = () => {
     });
 };
 
-
 router.post('/', (req, res) => {
     try {
         User.forge({

@@ -1,33 +1,33 @@
 'use strict';
 
 const router = require('express').Router();
-const Category = require('./../models/category');
+const Tag = require('./../../models/tag');
 
 router.get('/', (req, res) => {
     try {
-        Category.fetchAll()
-            .then(categories => {
-                res.json(categories);
+        Tag.fetchAll()
+            .then(tags => {
+                res.json(tags);
             })
             .catch(err => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Error listing categories.'
+                    message: 'Error listing tags.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Error listing categories.'
+            message: 'Error listing tags.'
         });
     }
 });
 
 router.post('/', (req, res) => {
     try {
-        new Category(req.body).save()
+        new Tag(req.body).save()
             .then(saved => {
                 res.json(saved);
             })
@@ -35,21 +35,21 @@ router.post('/', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Error inserting category.'
+                    message: 'Error inserting tag.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Error inserting category.'
+            message: 'Error inserting tag.'
         });
     }
 });
 
 router.put('/:id', (req, res) => {
     try {
-        Category.where('id', req.params.id).save(req.body, {
+        Tag.where('id', req.params.id).save(req.body, {
                 method: 'update',
                 patch: true
             })
@@ -61,21 +61,21 @@ router.put('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Error updating category.'
+                    message: 'Error updating tag.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Error updating category.'
+            message: 'Error updating tag.'
         });
     }
 });
 
 router.delete('/:id', (req, res) => {
     try {
-        Category.where('id', req.params.id).destroy()
+        Tag.where('id', req.params.id).destroy()
             .then(destroyed => {
                 res.json(destroyed);
             })
@@ -83,17 +83,17 @@ router.delete('/:id', (req, res) => {
                 res.status(400).send({
                     err: err,
                     position: 0,
-                    message: 'Error deleting category.'
+                    message: 'Error deleting tag.'
                 });
             });
     } catch (err) {
         res.status(400).send({
             err: err,
             position: 1,
-            message: 'Error deleting category.'
+            message: 'Error deleting tag.'
         });
     }
 });
 
 
-module.exports = app => app.use('/category', router);
+module.exports = app => app.use('/tag', router);
