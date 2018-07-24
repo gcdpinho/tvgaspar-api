@@ -6,7 +6,8 @@ const Ad = require('./../models/ad');
 router.post('/byType', (req, res) => {
     try {
         Ad.where({
-                type: req.body.type
+                type: req.body.type,
+                flgActive: 1
             })
             .fetchAll({
                 withRelated: ['image']
