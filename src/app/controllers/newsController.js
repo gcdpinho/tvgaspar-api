@@ -126,6 +126,40 @@ router.post('/byTagByCategory', (req, res) => {
     }
 });
 
+router.post('/byTagNotCategory', (req, res) => {
+    try {
+        News.where({
+                approval: 1,
+                flgActive: 1
+            })
+            .query('innerJoin', 'category_news', 'category_news.news_id', 'news.id')
+            .query('innerJoin', 'category', 'category.id', 'category_id')
+            .query('innerJoin', 'news_tag', 'news_tag.news_id', 'news.id')
+            .query('innerJoin', 'tag', 'tag.id', 'tag_id')
+            .where('category.category', '<>' ,req.body.category)
+            .where('tag.tag', req.body.tag)
+            .fetchAll({
+                withRelated: ['tags', 'images', 'categories', 'videos']
+            })
+            .then(news => {
+                res.json(news);
+            })
+            .catch(err => {
+                res.status(400).send({
+                    err: err,
+                    position: 0,
+                    message: 'Error listing news by category by tag.'
+                });
+            });
+    } catch (err) {
+        res.status(400).send({
+            err: err,
+            position: 1,
+            message: 'Error listing news by category by tag.'
+        });
+    }
+});
+
 router.get('/:id', (req, res) => {
     try {
         News.where({
