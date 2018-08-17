@@ -8,7 +8,9 @@ router.get('/byApproval', (req, res) => {
         News.where({
                 approval: 1,
                 flgActive: 1,
-            }).fetchAll({
+            })
+            .orderBy('created_at', 'desc')
+            .fetchAll({
                 withRelated: ['tags', 'images', 'categories', 'videos']
             })
             .then(news => {
@@ -39,6 +41,7 @@ router.post('/byTag', (req, res) => {
             .query('innerJoin', 'news_tag', 'news_id', 'news.id')
             .query('innerJoin', 'tag', 'tag.id', 'tag_id')
             .where('tag.tag', req.body.tag)
+            .orderBy('created_at', 'desc')
             .fetchAll({
                 withRelated: ['tags', 'images', 'categories', 'videos']
             })
@@ -70,6 +73,7 @@ router.post('/byCategory', (req, res) => {
             .query('innerJoin', 'category_news', 'news_id', 'news.id')
             .query('innerJoin', 'category', 'category.id', 'category_id')
             .where('category.category', req.body.category)
+            .orderBy('created_at', 'desc')
             .fetchAll({
                 withRelated: ['tags', 'images', 'categories', 'videos']
             })
@@ -104,6 +108,7 @@ router.post('/byTagByCategory', (req, res) => {
             .query('innerJoin', 'tag', 'tag.id', 'tag_id')
             .where('category.category', req.body.category)
             .where('tag.tag', req.body.tag)
+            .orderBy('created_at', 'desc')
             .fetchAll({
                 withRelated: ['tags', 'images', 'categories', 'videos']
             })
@@ -138,6 +143,7 @@ router.post('/byTagNotCategory', (req, res) => {
             .query('innerJoin', 'tag', 'tag.id', 'tag_id')
             .where('category.category', '<>' ,req.body.category)
             .where('tag.tag', req.body.tag)
+            .orderBy('created_at', 'desc')
             .fetchAll({
                 withRelated: ['tags', 'images', 'categories', 'videos']
             })

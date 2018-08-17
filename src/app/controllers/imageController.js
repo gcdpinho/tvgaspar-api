@@ -9,6 +9,7 @@ router.post('/byTag', (req, res) => {
             .query('innerJoin', 'image_tag', 'image_id', 'image.id')
             .query('innerJoin', 'tag', 'tag.id', 'tag_id')
             .where('tag.tag', req.body.tag)
+            .orderBy('image.id', 'desc')
             .fetchAll({
                 withRelated: ['tags']
             })
