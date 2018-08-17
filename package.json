@@ -26,6 +26,7 @@
     "fs": "0.0.1-security",
     "jsonwebtoken": "^8.1.1",
     "knex": "^0.14.6",
-    "mysql": "^2.15.0"
+    "mysql": "^2.15.0",
+    "nodemailer": "^4.6.7"
   }
 }
