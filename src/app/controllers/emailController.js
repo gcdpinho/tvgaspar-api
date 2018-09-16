@@ -22,9 +22,9 @@ router.post('/', (req, res) => {
 
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                console.log(err);
+                console.log(error);
                 res.status(400).send({
-                    err: err,
+                    err: error,
                     position: 0,
                     message: 'Error sending email contact.'
                 });
