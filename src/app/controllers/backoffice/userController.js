@@ -95,5 +95,49 @@ router.delete('/:id', (req, res) => {
     }
 });
 
+router.put('/password/:id', (req, res) => {
+    try {
+       User.forge({id: req.params.id})
+            .fetch()
+            .then(user => {
+                user.authenticate(req.body.password)
+                    .then(user => {
+                        user.save({
+                                password: req.body.newPassword
+                            })
+                            .then(saved => {
+                                res.json(saved);
+                            })
+                            .catch(err => {
+                                res.status(400).send({
+                                    err: err,
+                                    position: 0,
+                                    message: 'Error change password.'
+                                });
+                            });
+                    })
+                    .catch(err => {
+                      res.json({
+                          success: false,
+                          message: "Senha atual incorreta."
+                      })
+                    });
+            })
+            .catch(err => {
+                res.status(400).send({
+                    err: err,
+                    position: 2,
+                    message: 'Error change password.'
+                });
+            });
+    } catch (err) {
+        res.status(400).send({
+            err: err,
+            position: 3,
+            message: 'Error change password.'
+        });
+    }
+})
+
 
 module.exports = app => app.use('/user', router);
