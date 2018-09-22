@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// app.use('/backoffice', authMiddleware);
+app.use('/backoffice', authMiddleware);
 app.use('/backoffice', routerBackoffice);
 app.use('/', routerApp);
 
