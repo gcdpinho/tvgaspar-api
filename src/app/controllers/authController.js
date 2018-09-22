@@ -21,6 +21,9 @@ router.post('/', (req, res) => {
                     .then(auth => {
                         user.save({
                                 token: getToken()
+                            },{
+                                method: 'update',
+                                patch: true
                             })
                             .then((saved) => {
                                 res.json(saved);
