@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
             }).fetch()
             .then(user => {
                 user.authenticate(req.body.password)
-                    .then(user => {
+                    .then(auth => {
                         user.save({
                                 token: getToken()
                             })
