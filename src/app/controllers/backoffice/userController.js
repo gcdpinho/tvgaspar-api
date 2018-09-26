@@ -101,7 +101,7 @@ router.put('/password/:id', (req, res) => {
             .fetch()
             .then(user => {
                 user.authenticate(req.body.password)
-                    .then(user => {
+                    .then(auth => {
                         user.save({
                                 password: req.body.newPassword
                             })
