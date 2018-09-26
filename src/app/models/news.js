@@ -1,6 +1,7 @@
 'use strict';
 
 const bookshelf = require('bookshelf')(require('knex')(require('./../config/db.json')));
+bookshelf.plugin('pagination')
 const Tag = require('./tag');
 const Image = require('./image');
 const Video = require('./video');

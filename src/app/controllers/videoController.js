@@ -10,11 +10,16 @@ router.post('/byTag', (req, res) => {
             .query('innerJoin', 'tag', 'tag.id', 'tag_id')
             .where('tag.tag', req.body.tag)
             .orderBy('video.id', 'desc')
-            .fetchAll({
+            .fetchPage({
+                pageSize: req.query.pageSize || 20,
+                page: req.query.page || 1,
                 withRelated: ['tags']
-            })  
+            })
             .then(videos => {
-                res.json(videos);
+                res.json({
+                    videos,
+                    pagination: videos.pagination
+                });
             })
             .catch(err => {
                 console.log(err);
@@ -25,6 +30,7 @@ router.post('/byTag', (req, res) => {
                 });
             });
     } catch (err) {
+        console.log(err)
         res.status(400).send({
             err: err,
             position: 1,

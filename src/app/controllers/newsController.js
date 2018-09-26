@@ -10,11 +10,16 @@ router.get('/byApproval', (req, res) => {
                 flgActive: 1,
             })
             .orderBy('created_at', 'desc')
-            .fetchAll({
+            .fetchPage({
+                pageSize: req.query.pageSize || 24,
+                page: req.query.page || 1,
                 withRelated: ['tags', 'images', 'categories', 'videos']
             })
             .then(news => {
-                res.json(news);
+                res.json({
+                    news,
+                    pagination: news.pagination
+                });
             })
             .catch(err => {
                 res.status(400).send({
@@ -42,11 +47,16 @@ router.post('/byTag', (req, res) => {
             .query('innerJoin', 'tag', 'tag.id', 'tag_id')
             .where('tag.tag', req.body.tag)
             .orderBy('created_at', 'desc')
-            .fetchAll({
+            .fetchPage({
+                pageSize: req.query.pageSize || 5,
+                page: req.query.page || 1,
                 withRelated: ['tags', 'images', 'categories', 'videos']
             })
             .then(news => {
-                res.json(news);
+                res.json({
+                    news,
+                    pagination: news.pagination
+                });
             })
             .catch(err => {
                 res.status(400).send({
@@ -74,11 +84,16 @@ router.post('/byCategory', (req, res) => {
             .query('innerJoin', 'category', 'category.id', 'category_id')
             .where('category.category', req.body.category)
             .orderBy('created_at', 'desc')
-            .fetchAll({
+            .fetchPage({
+                pageSize: req.query.pageSize || 10,
+                page: req.query.page || 1,
                 withRelated: ['tags', 'images', 'categories', 'videos']
             })
             .then(news => {
-                res.json(news);
+                res.json({
+                    news,
+                    pagination: news.pagination
+                });
             })
             .catch(err => {
                 res.status(400).send({
@@ -109,11 +124,16 @@ router.post('/byTagByCategory', (req, res) => {
             .where('category.category', req.body.category)
             .where('tag.tag', req.body.tag)
             .orderBy('created_at', 'desc')
-            .fetchAll({
+            .fetchPage({
+                pageSize: req.query.pageSize || 10,
+                page: req.query.page || 1,
                 withRelated: ['tags', 'images', 'categories', 'videos']
             })
             .then(news => {
-                res.json(news);
+                res.json({
+                    news,
+                    pagination: news.pagination
+                });
             })
             .catch(err => {
                 res.status(400).send({
@@ -141,14 +161,19 @@ router.post('/byTagNotCategory', (req, res) => {
             .query('innerJoin', 'category', 'category.id', 'category_id')
             .query('innerJoin', 'news_tag', 'news_tag.news_id', 'news.id')
             .query('innerJoin', 'tag', 'tag.id', 'tag_id')
-            .where('category.category', '<>' ,req.body.category)
+            .where('category.category', '<>', req.body.category)
             .where('tag.tag', req.body.tag)
             .orderBy('created_at', 'desc')
-            .fetchAll({
+            .fetchPage({
+                pageSize: req.query.pageSize || 3,
+                page: req.query.page || 1,
                 withRelated: ['tags', 'images', 'categories', 'videos']
             })
             .then(news => {
-                res.json(news);
+                res.json({
+                    news,
+                    pagination: news.pagination
+                });
             })
             .catch(err => {
                 res.status(400).send({
